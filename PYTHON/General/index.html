@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cliente WebSocket</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f0f0f0;
+    }
+
+    #log {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 15px;
+      height: 300px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+    }
+
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Cliente WebSocket</h2>
+
+  <div id="log"></div>
+
+  <input id="mensaje" type="text" placeholder="Escribí un mensaje" />
+  <button onclick="enviarMensaje()">Enviar</button>
+
+  <script>
+    const log = document.getElementById("log");
+    const mensajeInput = document.getElementById("mensaje");
+
+    const socket = new WebSocket("ws://localhost:6789");
+
+    socket.onopen = () => {
+      agregarLog("✅ Conectado al servidor WebSocket");
+    };
+
+    socket.onmessage = (event) => {
+      agregarLog("📨 Mensaje recibido: " + event.data);
+    };
+
+    socket.onerror = (error) => {
+      agregarLog("❌ Error en la conexión: " + error.message);
+    };
+
+    socket.onclose = () => {
+      agregarLog("🔌 Conexión cerrada");
+    };
+
+    function enviarMensaje() {
+      const msg = mensajeInput.value;
+      if (msg && socket.readyState === WebSocket.OPEN) {
+        socket.send(JSON.stringify({id : 12 , mensaje : "juana de arco"}));
+        agregarLog("📤 Mensaje enviado: " + msg);
+        mensajeInput.value = "";
+      }
+    }
+
+    function agregarLog(mensaje) {
+      const p = document.createElement("p");
+      p.textContent = mensaje;
+      log.appendChild(p);
+      log.scrollTop = log.scrollHeight;
+    }
+  </script>
+</body>
+</html>
+

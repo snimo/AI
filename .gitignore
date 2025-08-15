@@ -1,0 +1,13 @@
+/.venv/
+.vend/
+QROQ/chat-completion/.idea/
+.idea/
+prueba
+/LANGCHAIN/Basic-AI-Agent-React-Agent/credentials.json
+/LANGCHAIN/Basic-AI-Agent-Call-Tool-Only-One/token.json
+/LANGCHAIN/Basic-AI-Agent-Call-Tool-Only-One/credentials.json
+/LANGCHAIN/Basic-AI-Agent-Memory/credentials.json
+/LANGCHAIN/Basic-AI-Agent-React-Agent3/credentials.json
+/LANGCHAIN/Basic-AI-Agent-Memory/token.json
+**/credentials.json
+**/token.json
